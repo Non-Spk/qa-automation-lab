@@ -5,5 +5,6 @@ export const config = {
     login: "/login",
     signUp: "/signup",
     accountCreated: "/account_created",
+    deleteAccount: "/delete_account"
   },
 } as const;

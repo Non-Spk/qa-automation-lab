@@ -5,12 +5,14 @@ import { LoginPages } from "../keywords/pages/login.page";
 import { LoginFeature } from "../keywords/features/login.features";
 import { SignUpPages } from "../keywords/pages/signUp.page";
 import { AccountCreatedPages } from "../keywords/pages/accountCreated.page";
+import { DeleteAccountPages } from "../keywords/pages/deleteAccount.page";
 
 type BaseFixtures = {
   homePage: HomePages;
   loginPage: LoginPages;
   signUpPage: SignUpPages;
   accountCreatedPage: AccountCreatedPages;
+  deleteAccountPage: DeleteAccountPages;
   loginFeature: LoginFeature;
 };
 
@@ -38,6 +40,11 @@ export const test = base.extend<BaseFixtures>({
   accountCreatedPage: async ({ page }, use) => {
     const accountCreatedPage = new AccountCreatedPages(page);
     await use(accountCreatedPage);
+  },
+
+  deleteAccountPage: async ({ page }, use) => {
+    const deleteAccountPage = new DeleteAccountPages(page);
+    await use(deleteAccountPage);
   },
 });
 
