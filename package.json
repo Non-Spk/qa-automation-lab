@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format:check": "prettier --check .",
-    "format:write": "prettier --write ."
+    "format:write": "prettier --write .",
+    "i18n:check": "node src/resources/translations/script/check-i18n.mjs"
   },
   "keywords": [],
   "author": "",
