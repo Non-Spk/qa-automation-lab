@@ -31,4 +31,11 @@ export class LoginLocators extends BasePage {
   protected btnSignUp(): Locator {
     return this.page.getByRole("button", { name: "SignUp" });
   }
+
+  protected txtLoginErrorMessage(): Locator {
+    return this.page
+      .locator("form")
+      .filter({ hasText: "Login" })
+      .getByText("Your email or password is incorrect!");
+  }
 }
