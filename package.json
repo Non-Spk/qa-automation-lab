@@ -9,7 +9,8 @@
     "test:smoke": "playwright test --grep @smoke",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write ."
   },
   "keywords": [],
   "author": "",
