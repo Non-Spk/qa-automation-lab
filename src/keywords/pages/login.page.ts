@@ -18,7 +18,9 @@ export class LoginPages extends LoginLocators {
     await this.btnLogin().click();
   }
 
-  public async enterEmailAddressSignUpForm(emailAddress: string): Promise<void> {
+  public async enterEmailAddressSignUpForm(
+    emailAddress: string,
+  ): Promise<void> {
     await this.txtEmailAddressSignUpForm().fill(emailAddress);
   }
 

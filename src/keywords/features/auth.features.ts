@@ -1,4 +1,7 @@
-import { AccountCredentials, AccountInformation } from "../../resources/interfaces/account.interface";
+import {
+  AccountCredentials,
+  AccountInformation,
+} from "../../resources/interfaces/account.interface";
 import { AccountCreatedPages } from "../pages/accountCreated.page";
 import { DeleteAccountPages } from "../pages/deleteAccount.page";
 import { HomePages } from "../pages/home.page";
@@ -11,8 +14,8 @@ export class AuthFeature {
     private readonly loginPage: LoginPages,
     private readonly signUpPage: SignUpPages,
     private readonly accountCreatedPage: AccountCreatedPages,
-    private readonly deleteAccountPage: DeleteAccountPages
-  ) { }
+    private readonly deleteAccountPage: DeleteAccountPages,
+  ) {}
 
   public async loginAccount(account: AccountCredentials): Promise<void> {
     const { emailAddress, userName, password } = account;
@@ -25,9 +28,27 @@ export class AuthFeature {
     await this.homePage.verifyLoggedInAs(userName);
   }
 
-  public async createNewAccount(account: AccountCredentials, information: AccountInformation): Promise<void> {
+  public async createNewAccount(
+    account: AccountCredentials,
+    information: AccountInformation,
+  ): Promise<void> {
     const { emailAddress, userName, password } = account;
-    const { title, dateOfBirth, newsletter, specialOffers, firstName, lastName, company, address1, address2, country, state, city, zipCode, mobileNumber } = information;
+    const {
+      title,
+      dateOfBirth,
+      newsletter,
+      specialOffers,
+      firstName,
+      lastName,
+      company,
+      address1,
+      address2,
+      country,
+      state,
+      city,
+      zipCode,
+      mobileNumber,
+    } = information;
     await this.homePage.navigateToHomePage();
     await this.homePage.clickSignUpLogin();
     await this.loginPage.verifyURLIsAppearing();
@@ -45,7 +66,9 @@ export class AuthFeature {
     }
     await this.signUpPage.enterPassword(password);
     await this.signUpPage.selectDays(dateOfBirth.getDate().toString());
-    await this.signUpPage.selectMonths(dateOfBirth.toLocaleString('default', { month: 'long' }));
+    await this.signUpPage.selectMonths(
+      dateOfBirth.toLocaleString("default", { month: "long" }),
+    );
     await this.signUpPage.selectYears(dateOfBirth.getFullYear().toString());
     if (newsletter) {
       await this.signUpPage.checkNewsletter();

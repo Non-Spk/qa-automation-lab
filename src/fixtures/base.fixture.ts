@@ -1,4 +1,3 @@
-
 import { test as base } from "@playwright/test";
 import { HomePages } from "../keywords/pages/home.page";
 import { LoginPages } from "../keywords/pages/login.page";
@@ -42,8 +41,17 @@ export const test = base.extend<BaseFixtures>({
     await use(deleteAccountPage);
   },
 
-  authFeature: async ({ homePage, loginPage, signUpPage, accountCreatedPage, deleteAccountPage }, use) => {
-    const authFeature = new AuthFeature(homePage, loginPage, signUpPage, accountCreatedPage, deleteAccountPage);
+  authFeature: async (
+    { homePage, loginPage, signUpPage, accountCreatedPage, deleteAccountPage },
+    use,
+  ) => {
+    const authFeature = new AuthFeature(
+      homePage,
+      loginPage,
+      signUpPage,
+      accountCreatedPage,
+      deleteAccountPage,
+    );
     await use(authFeature);
   },
 });
