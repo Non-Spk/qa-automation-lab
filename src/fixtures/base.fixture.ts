@@ -2,10 +2,10 @@
 import { test as base } from "@playwright/test";
 import { HomePages } from "../keywords/pages/home.page";
 import { LoginPages } from "../keywords/pages/login.page";
-import { LoginFeature } from "../keywords/features/login.features";
 import { SignUpPages } from "../keywords/pages/signUp.page";
 import { AccountCreatedPages } from "../keywords/pages/accountCreated.page";
 import { DeleteAccountPages } from "../keywords/pages/deleteAccount.page";
+import { AuthFeature } from "../keywords/features/auth.features";
 
 type BaseFixtures = {
   homePage: HomePages;
@@ -13,7 +13,7 @@ type BaseFixtures = {
   signUpPage: SignUpPages;
   accountCreatedPage: AccountCreatedPages;
   deleteAccountPage: DeleteAccountPages;
-  loginFeature: LoginFeature;
+  authFeature: AuthFeature;
 };
 
 export const test = base.extend<BaseFixtures>({
@@ -32,11 +32,6 @@ export const test = base.extend<BaseFixtures>({
     await use(signUpPage);
   },
 
-  loginFeature: async ({ homePage, loginPage }, use) => {
-    const loginFeature = new LoginFeature(homePage, loginPage);
-    await use(loginFeature);
-  },
-
   accountCreatedPage: async ({ page }, use) => {
     const accountCreatedPage = new AccountCreatedPages(page);
     await use(accountCreatedPage);
@@ -45,6 +40,11 @@ export const test = base.extend<BaseFixtures>({
   deleteAccountPage: async ({ page }, use) => {
     const deleteAccountPage = new DeleteAccountPages(page);
     await use(deleteAccountPage);
+  },
+
+  authFeature: async ({ homePage, loginPage, signUpPage, accountCreatedPage, deleteAccountPage }, use) => {
+    const authFeature = new AuthFeature(homePage, loginPage, signUpPage, accountCreatedPage, deleteAccountPage);
+    await use(authFeature);
   },
 });
 
