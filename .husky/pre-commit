@@ -1,1 +1,4 @@
-pnpm lint && pnpm typecheck && pnpm format:check
+pnpm exec prettier --write .
+pnpm lint
+pnpm typecheck
+pnpm format:check
