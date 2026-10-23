@@ -4,10 +4,7 @@ import ts from "typescript";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, "../../../../");
-const translationsDir = path.join(
-  projectRoot,
-  "src/resources/translations",
-);
+const translationsDir = path.join(projectRoot, "src/resources/translations");
 
 const configPath = path.join(projectRoot, "tsconfig.json");
 
@@ -15,10 +12,7 @@ const configFile = ts.readConfigFile(configPath, ts.sys.readFile);
 
 if (configFile.error) {
   console.error(
-    ts.flattenDiagnosticMessageText(
-      configFile.error.messageText,
-      "\n",
-    ),
+    ts.flattenDiagnosticMessageText(configFile.error.messageText, "\n"),
   );
   process.exit(1);
 }
@@ -41,13 +35,15 @@ const program = ts.createProgram({
 
 const diagnostics = [
   ...parsedConfig.errors,
-  ...ts.getPreEmitDiagnostics(program).filter(
-    (diagnostic) =>
-      diagnostic.file &&
-      path.resolve(diagnostic.file.fileName).startsWith(
-        path.resolve(translationsDir) + path.sep,
-      ),
-  ),
+  ...ts
+    .getPreEmitDiagnostics(program)
+    .filter(
+      (diagnostic) =>
+        diagnostic.file &&
+        path
+          .resolve(diagnostic.file.fileName)
+          .startsWith(path.resolve(translationsDir) + path.sep),
+    ),
 ];
 
 if (diagnostics.length > 0) {
@@ -58,16 +54,11 @@ if (diagnostics.length > 0) {
   };
 
   console.error(
-    ts.formatDiagnosticsWithColorAndContext(
-      diagnostics,
-      formatHost,
-    ),
+    ts.formatDiagnosticsWithColorAndContext(diagnostics, formatHost),
   );
 
   console.error("\ni18n validation failed.");
   process.exit(1);
 }
 
-console.log(
-  "i18n validation passed: en and th match TranslationType.",
-);
+console.log("i18n validation passed: en and th match TranslationType.");
