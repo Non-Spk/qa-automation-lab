@@ -1,3 +1,4 @@
+import { expect } from "../../fixtures/base.fixture";
 import { config } from "../../resources/configs/env.config";
 import { LoginLocators } from "../../resources/locators/login.locator";
 
@@ -30,5 +31,9 @@ export class LoginPages extends LoginLocators {
 
   public async clickSignUp(): Promise<void> {
     await this.btnSignUp().click();
+  }
+
+  public async verifyLoginErrorMessageIsAppearing(): Promise<void> {
+    await expect(this.txtLoginErrorMessage()).toBeVisible();
   }
 }

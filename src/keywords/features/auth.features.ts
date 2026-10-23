@@ -18,14 +18,13 @@ export class AuthFeature {
   ) {}
 
   public async loginAccount(account: AccountCredentials): Promise<void> {
-    const { emailAddress, userName, password } = account;
+    const { emailAddress, password } = account;
     await this.homePage.navigateToHomePage();
     await this.homePage.clickSignUpLogin();
     await this.loginPage.verifyURLIsAppearing();
     await this.loginPage.enterEmailAddressLoginForm(emailAddress);
     await this.loginPage.enterPasswordLoginForm(password);
     await this.loginPage.clickLogin();
-    await this.homePage.verifyLoggedInAs(userName);
   }
 
   public async createNewAccount(
