@@ -4,5 +4,6 @@ export const config = {
   paths: {
     login: "/login",
     signUp: "/signup",
+    accountCreated: "/account_created",
   },
 } as const;
