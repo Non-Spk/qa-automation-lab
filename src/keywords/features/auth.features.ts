@@ -1,5 +1,6 @@
 import { AccountCredentials, AccountInformation } from "../../resources/interfaces/account.interface";
 import { AccountCreatedPages } from "../pages/accountCreated.page";
+import { DeleteAccountPages } from "../pages/deleteAccount.page";
 import { HomePages } from "../pages/home.page";
 import { LoginPages } from "../pages/login.page";
 import { SignUpPages } from "../pages/signUp.page";
@@ -10,6 +11,7 @@ export class AuthFeature {
     private readonly loginPage: LoginPages,
     private readonly signUpPage: SignUpPages,
     private readonly accountCreatedPage: AccountCreatedPages,
+    private readonly deleteAccountPage: DeleteAccountPages
   ) { }
 
   public async loginAccount(account: AccountCredentials): Promise<void> {
@@ -68,5 +70,13 @@ export class AuthFeature {
     await this.accountCreatedPage.verifyAccountCreated();
     await this.accountCreatedPage.clickContinue();
     await this.homePage.verifyLoggedInAs(userName);
+  }
+
+  public async deleteAccount(): Promise<void> {
+    await this.homePage.verifyURLIsAppearing();
+    await this.homePage.clickDeleteAccount();
+    await this.deleteAccountPage.verifyURLIsAppearing();
+    await this.deleteAccountPage.verifyAccountDeleted();
+    await this.deleteAccountPage.clickContinue();
   }
 }
