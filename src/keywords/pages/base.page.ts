@@ -1,4 +1,5 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
+import { config } from "../../resources/configs/env.config";
 
 export class BasePage {
   protected readonly page: Page;
@@ -7,7 +8,13 @@ export class BasePage {
     this.page = page;
   }
 
-  async navigate(path: string = "/"): Promise<void> {
+  protected async navigate(path: string = "/"): Promise<void> {
     await this.page.goto(path);
   }
+
+  protected async verifyURL(expectedURL: string = "/"): Promise<void> {
+    const fullURL = new URL(expectedURL, config.baseURL).href;
+    await expect(this.page).toHaveURL(fullURL);
+  }
+
 }
