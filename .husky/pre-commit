@@ -1,5 +1,4 @@
 pnpm i18n:check
 pnpm lint
 pnpm typecheck
-pnpm format:write
 pnpm format:check

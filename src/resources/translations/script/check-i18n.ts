@@ -48,7 +48,7 @@ const diagnostics = [
 
 if (diagnostics.length > 0) {
   const formatHost = {
-    getCanonicalFileName: (fileName) => fileName,
+    getCanonicalFileName: (fileName: string) => fileName,
     getCurrentDirectory: () => projectRoot,
     getNewLine: () => "\n",
   };
