@@ -5,8 +5,10 @@ import { SignUpPages } from "../keywords/pages/signUp.page";
 import { AccountCreatedPages } from "../keywords/pages/accountCreated.page";
 import { DeleteAccountPages } from "../keywords/pages/deleteAccount.page";
 import { AuthFeature } from "../keywords/features/auth.features";
+import { I18n } from "./i18n.fixture";
 
 type BaseFixtures = {
+  i18n: I18n;
   homePage: HomePages;
   loginPage: LoginPages;
   signUpPage: SignUpPages;
@@ -16,28 +18,33 @@ type BaseFixtures = {
 };
 
 export const test = base.extend<BaseFixtures>({
-  homePage: async ({ page }, use) => {
-    const homePage = new HomePages(page);
+  // eslint-disable-next-line no-empty-pattern
+  i18n: async ({}, use) => {
+    await use(new I18n());
+  },
+
+  homePage: async ({ page, i18n }, use) => {
+    const homePage = new HomePages(page, i18n);
     await use(homePage);
   },
 
-  loginPage: async ({ page }, use) => {
-    const loginPage = new LoginPages(page);
+  loginPage: async ({ page, i18n }, use) => {
+    const loginPage = new LoginPages(page, i18n);
     await use(loginPage);
   },
 
-  signUpPage: async ({ page }, use) => {
-    const signUpPage = new SignUpPages(page);
+  signUpPage: async ({ page, i18n }, use) => {
+    const signUpPage = new SignUpPages(page, i18n);
     await use(signUpPage);
   },
 
-  accountCreatedPage: async ({ page }, use) => {
-    const accountCreatedPage = new AccountCreatedPages(page);
+  accountCreatedPage: async ({ page, i18n }, use) => {
+    const accountCreatedPage = new AccountCreatedPages(page, i18n);
     await use(accountCreatedPage);
   },
 
-  deleteAccountPage: async ({ page }, use) => {
-    const deleteAccountPage = new DeleteAccountPages(page);
+  deleteAccountPage: async ({ page, i18n }, use) => {
+    const deleteAccountPage = new DeleteAccountPages(page, i18n);
     await use(deleteAccountPage);
   },
 
