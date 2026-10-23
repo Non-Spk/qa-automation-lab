@@ -1,4 +1,7 @@
-import { AccountCredentials, AccountInformation } from "../interfaces/account.interface";
+import {
+  AccountCredentials,
+  AccountInformation,
+} from "../interfaces/account.interface";
 
 interface AccountData extends AccountCredentials {
   information?: AccountInformation;
@@ -7,7 +10,6 @@ interface AccountData extends AccountCredentials {
 interface AccountDataCollection {
   [key: string]: AccountData;
 }
-
 
 export const accountData: AccountDataCollection = {
   qa_tester_q1: {

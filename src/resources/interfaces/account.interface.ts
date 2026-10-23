@@ -5,7 +5,7 @@ export type AccountCredentials = {
 };
 
 export interface AccountInformation {
-  title: 'mr' | 'mrs';
+  title: "mr" | "mrs";
   dateOfBirth: Date;
   newsletter?: boolean;
   specialOffers?: boolean;

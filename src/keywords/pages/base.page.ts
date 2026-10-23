@@ -16,5 +16,4 @@ export class BasePage {
     const fullURL = new URL(expectedURL, config.baseURL).href;
     await expect(this.page).toHaveURL(fullURL);
   }
-
 }
