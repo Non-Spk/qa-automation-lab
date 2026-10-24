@@ -1,11 +1,11 @@
 import { test as base } from "@playwright/test";
-import { HomePages } from "../keywords/pages/home.page";
-import { LoginPages } from "../keywords/pages/login.page";
-import { SignUpPages } from "../keywords/pages/signUp.page";
-import { AccountCreatedPages } from "../keywords/pages/accountCreated.page";
-import { DeleteAccountPages } from "../keywords/pages/deleteAccount.page";
-import { AuthFeature } from "../keywords/features/auth.features";
+import { HomePages } from "../../keywords/web/pages/home.page";
+import { LoginPages } from "../../keywords/web/pages/login.page";
+import { SignUpPages } from "../../keywords/web/pages/signUp.page";
+import { AccountCreatedPages } from "../../keywords/web/pages/accountCreated.page";
+import { DeleteAccountPages } from "../../keywords/web/pages/deleteAccount.page";
 import { I18n } from "./i18n.fixture";
+import { AuthFeature } from "../../keywords/web/features/auth.features";
 
 type BaseFixtures = {
   i18n: I18n;

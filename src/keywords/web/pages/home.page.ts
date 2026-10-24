@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { HomeLocators } from "../../resources/locators/home.locator";
+import { HomeLocators } from "../../../resources/locators/web/home.locator";
 
 export class HomePages extends HomeLocators {
   public async navigateToHomePage(): Promise<void> {

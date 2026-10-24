@@ -1,10 +1,10 @@
-import { expect } from "../../fixtures/base.fixture";
-import { config } from "../../resources/configs/env.config";
-import { LoginLocators } from "../../resources/locators/login.locator";
+import { expect } from "../../../fixtures/web/base.fixture";
+import { webConfig } from "../../../resources/configs/web.config";
+import { LoginLocators } from "../../../resources/locators/web/login.locator";
 
 export class LoginPages extends LoginLocators {
   public async verifyURLIsAppearing(): Promise<void> {
-    await this.verifyURL(config.paths.login);
+    await this.verifyURL(webConfig.endpoints.login);
   }
 
   public async enterEmailAddressLoginForm(emailAddress: string): Promise<void> {

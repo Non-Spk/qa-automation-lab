@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
-import { BasePage } from "../../keywords/pages/base.page";
-import { I18n } from "../../fixtures/i18n.fixture";
+import { BasePage } from "../../../keywords/web/pages/base.page";
+import { I18n } from "../../../fixtures/web/i18n.fixture";
 
 export class HomeLocators extends BasePage {
   constructor(page: Page, i18n: I18n) {

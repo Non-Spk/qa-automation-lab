@@ -1,7 +1,7 @@
 import {
   AccountCredentials,
   AccountInformation,
-} from "../interfaces/account.interface";
+} from "../../interfaces/web/account.interface";
 
 interface AccountData extends AccountCredentials {
   information?: AccountInformation;

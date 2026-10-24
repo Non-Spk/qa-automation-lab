@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
-import { config } from "../../resources/configs/env.config";
-import { I18n } from "../../fixtures/i18n.fixture";
+import { webConfig } from "../../../resources/configs/web.config";
+import { I18n } from "../../../fixtures/web/i18n.fixture";
 
 export class BasePage {
   protected readonly page: Page;
@@ -20,7 +20,7 @@ export class BasePage {
   }
 
   protected async verifyURL(expectedURL: string = "/"): Promise<void> {
-    const fullURL = new URL(expectedURL, config.baseURL).href;
+    const fullURL = new URL(expectedURL, webConfig.baseURL).href;
     await expect(this.page).toHaveURL(fullURL);
   }
 }

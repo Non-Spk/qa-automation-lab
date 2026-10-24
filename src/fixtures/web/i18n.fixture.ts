@@ -2,7 +2,7 @@ import {
   type Language,
   resolveLanguage,
   translations,
-} from "../resources/configs/i18n.config";
+} from "../../resources/configs/i18n.config";
 
 export class I18n {
   private _lang: Language;

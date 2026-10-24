@@ -1,10 +1,10 @@
 import { expect } from "@playwright/test";
-import { config } from "../../resources/configs/env.config";
-import { DeleteAccountLocators } from "../../resources/locators/deleteAccount.locator";
+import { webConfig } from "../../../resources/configs/web.config";
+import { DeleteAccountLocators } from "../../../resources/locators/web/deleteAccount.locator";
 
 export class DeleteAccountPages extends DeleteAccountLocators {
   public async verifyURLIsAppearing(): Promise<void> {
-    await this.verifyURL(config.paths.deleteAccount);
+    await this.verifyURL(webConfig.endpoints.deleteAccount);
   }
 
   public async verifyAccountDeleted(): Promise<void> {

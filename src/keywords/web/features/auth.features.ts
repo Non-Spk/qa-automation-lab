@@ -1,7 +1,7 @@
 import {
   AccountCredentials,
   AccountInformation,
-} from "../../resources/interfaces/account.interface";
+} from "../../../resources/interfaces/web/account.interface";
 import { AccountCreatedPages } from "../pages/accountCreated.page";
 import { DeleteAccountPages } from "../pages/deleteAccount.page";
 import { HomePages } from "../pages/home.page";

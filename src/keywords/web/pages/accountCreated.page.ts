@@ -1,10 +1,10 @@
 import { expect } from "@playwright/test";
-import { config } from "../../resources/configs/env.config";
-import { AccountCreatedLocators } from "../../resources/locators/accountCreated.locator";
+import { webConfig } from "../../../resources/configs/web.config";
+import { AccountCreatedLocators } from "../../../resources/locators/web/accountCreated.locator";
 
 export class AccountCreatedPages extends AccountCreatedLocators {
   public async verifyURLIsAppearing(): Promise<void> {
-    await this.verifyURL(config.paths.accountCreated);
+    await this.verifyURL(webConfig.endpoints.accountCreated);
   }
 
   public async verifyAccountCreated(): Promise<void> {

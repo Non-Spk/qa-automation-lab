@@ -1,5 +1,5 @@
-import { test } from "../fixtures/base.fixture";
-import { accountData } from "../resources/data/account.data";
+import { test } from "../../fixtures/web/base.fixture";
+import { accountData } from "../../resources/data/web/account.data";
 
 test.describe(
   "Authentication Feature Tests",

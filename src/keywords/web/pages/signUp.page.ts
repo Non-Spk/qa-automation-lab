@@ -1,9 +1,9 @@
-import { config } from "../../resources/configs/env.config";
-import { SignUpLocators } from "../../resources/locators/signUp.locator";
+import { webConfig } from "../../../resources/configs/web.config";
+import { SignUpLocators } from "../../../resources/locators/web/signUp.locator";
 
 export class SignUpPages extends SignUpLocators {
   public async verifyURLIsAppearing(): Promise<void> {
-    await this.verifyURL(config.paths.signUp);
+    await this.verifyURL(webConfig.endpoints.signUp);
   }
   public async selectTitleMr(): Promise<void> {
     await this.chkMr().check();
