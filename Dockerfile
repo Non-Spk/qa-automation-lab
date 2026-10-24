@@ -1,12 +1,16 @@
-FROM mcr.microsoft.com/playwright:v1.48.1-jammy
 
+FROM mcr.microsoft.com/playwright:v1.64.1-jammy
+
+ENV CI=true
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile
+RUN npm install --global corepack@0.34.5 \
+  && corepack enable
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
+RUN pnpm install --frozen-lockfile
 
 COPY . .
-
-RUN pnpm exec playwright install --with-deps chromium
 
 CMD ["pnpm", "test"]
