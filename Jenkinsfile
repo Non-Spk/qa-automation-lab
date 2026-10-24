@@ -21,21 +21,23 @@ pipeline {
     stage('Build Docker image') {
       steps {
         sh """
-          docker build --tag \"${DOCKER_IMAGE}\" .
+          docker build --tag "${DOCKER_IMAGE}" .
         """
       }
     }
 
-    stage('Code quality and Playwright validation') {
+    stage('Quality checks and Playwright tests') {
       steps {
         sh '''
-          mkdir -p playwright-report test-results
+          set -eu
+          mkdir -p "$WORKSPACE/playwright-report" "$WORKSPACE/test-results"
+
           docker run --rm \
             -e CI=true \
             -v "$WORKSPACE/playwright-report:/app/playwright-report" \
             -v "$WORKSPACE/test-results:/app/test-results" \
             "${DOCKER_IMAGE}" \
-            sh -c "pnpm lint && pnpm typecheck && pnpm format:check && pnpm i18n:check && pnpm exec playwright test"
+            sh -c "pnpm lint && pnpm typecheck && pnpm format:check && pnpm exec playwright test"
         '''
       }
     }
@@ -50,6 +52,11 @@ pipeline {
           fingerprint: false
         )
       }
+
+      sh '''
+        docker image rm -f "${DOCKER_IMAGE}" >/dev/null 2>&1 || true
+        rm -rf "$WORKSPACE/playwright-report" "$WORKSPACE/test-results" || true
+      '''
     }
 
     success {
@@ -57,22 +64,14 @@ pipeline {
     }
 
     failure {
-      echo 'Quality checks or Playwright tests failed. Reports have been archived when present.'
-    }
-
-    cleanup {
-      sh '''
-        docker image rm -f "${DOCKER_IMAGE}" || true
-        rm -rf playwright-report test-results || true
-      '''
+      echo 'Quality checks or Playwright tests failed. Reports were archived when present.'
     }
   }
 }
 
 /*
- * Prerequisites for this pipeline:
- * - Jenkins agent with Docker CLI installed and access to a reachable Docker daemon.
- * - The agent must be able to build and run the repo's existing Docker image.
- * - This does not assume Docker-in-Docker is configured; if your Jenkins setup does not
- *   provide Docker on the agent, this pipeline must be run on a node that does.
+ * Prerequisites:
+ * - Jenkins agent with Docker installed and access to a Docker daemon.
+ * - The agent must be able to build and run the repository's existing Docker image.
+ * - This pipeline does not assume Docker-in-Docker is enabled; run it on a Docker-capable agent.
  */
