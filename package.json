@@ -15,7 +15,9 @@
     "docker:test": "docker build -t qa-automation-lab . && docker run --rm qa-automation-lab",
     "act:push": "act push -W .github/workflows/playwright.yml",
     "act:pr": "act pull_request -W .github/workflows/playwright.yml",
-    "act:workflow": "act workflow_dispatch -W .github/workflows/playwright.yml"
+    "act:workflow": "act workflow_dispatch -W .github/workflows/playwright.yml",
+    "jenkins:build": "docker compose up --build -d",
+    "jenkins:password": "docker logs jenkins"
   },
   "keywords": [],
   "author": "",
